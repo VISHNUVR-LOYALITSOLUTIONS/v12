@@ -7,3 +7,8 @@
 	path = OCA/purchase-workflow
 	url = git@github.com:OCA/purchase-workflow.git
 	branch = 12.0
+
+[submodule "VISHNUVR-LOYALITSOLUTIONS/v12"]
+	path = VISHNUVR-LOYALITSOLUTIONS/v12
+	url = git@github.com:VISHNUVR-LOYALITSOLUTIONS/v12.git
+	branch = staging
