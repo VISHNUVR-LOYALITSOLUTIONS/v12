@@ -1,0 +1,314 @@
+<odoo>
+    <data>
+
+        <record id="cess_tag_tax" model="account.account.tag">
+            <field name="name">CESS</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="kfc_tag_tax" model="account.account.tag">
+            <field name="name">KFC</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+
+        <record id="kfc_group" model="account.tax.group">
+            <field name="name">KFC</field>
+        </record>
+
+        <!-- GST TAXES-->
+
+        <!-- GST 28 + CESS 12 + KFC 1 Group Tax -->
+        <record id="sale_sgst_14_cess_12" model="account.tax">
+            <field name="name">SGST 14% [KFC + CESS]</field>
+            <field name="description">SGST 14%</field>
+            <field name="type_tax_use">none</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">14</field>
+            <field name="python_compute">result= ((price_unit * quantity /1.41) * 0.14)</field>
+            <field name="tag_ids" eval="[(6,0,[ref('gstr_efiling.wk_sgst_tag_tax'),])]"/>
+            <field name="price_include" eval="1"/>
+            <field name="include_base_amount" eval="1"/>
+            <field name="adjust_amount">41</field>
+            <!--<field name="cess_adjust_amount">2.928571429</field>-->
+
+        </record>
+        <record id="sale_cgst_14_cess_12" model="account.tax">
+            <field name="name">CGST 14% [KFC + CESS]</field>
+            <field name="description">CGST 14%</field>
+            <field name="type_tax_use">none</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">14</field>
+            <field name="python_compute">result= ((price_unit * quantity /1.41) * 0.14)</field>
+            <field name="tag_ids" eval="[(6,0,[ref('gstr_efiling.wk_cgst_tag_tax'),])]"/>
+            <field name="price_include" eval="1"/>
+            <field name="include_base_amount" eval="1"/>
+            <field name="adjust_amount">41</field>
+            <!--<field name="cess_adjust_amount">2.928571429</field>-->
+        </record>
+        <record id="sale_cess_12_gst_28" model="account.tax">
+            <field name="name">CESS 12% [KFC]</field>
+            <field name="description">CESS 12%</field>
+            <field name="type_tax_use">none</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">12</field>
+            <field name="python_compute">result= ((price_unit * quantity /1.41) * 0.12)</field>
+            <field name="tag_ids" eval="[(6,0,[ref('cess_tag_tax'),])]"/>
+            <field name="price_include" eval="1"/>
+            <field name="include_base_amount" eval="1"/>
+            <field name="adjust_amount">41</field>
+            <!--<field name="cess_adjust_amount">3.416666667</field>-->
+            <field name="cess">1</field>
+        </record>
+
+        <record id="sale_kfc_1_for_gst_28_cess_12" model="account.tax">
+            <field name="name">KFC 1% [for GST 28% + CESS 12]</field>
+            <field name="description">KFC 1% [for GST 28% + CESS 12]</field>
+            <field name="type_tax_use">none</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">1</field>
+            <field name="python_compute">result= ((price_unit * quantity /1.41) * 0.01)</field>
+            <field name="tag_ids" eval="[(6,0,[ref('kfc_tag_tax'),])]"/>
+            <field name="price_include" eval="1"/>
+            <field name="include_base_amount" eval="1"/>
+            <field name="adjust_amount">41</field>
+            <!--<field name="cess_adjust_amount">41</field>-->
+            <field name="kfc">1</field>
+
+        </record>
+
+         <record id="sale_gst_28_cess_12_kfc_1" model="account.tax">
+            <field name="name">GST 28% + CESS 12% + KFC 1%</field>
+            <field name="description">GST 28% + CESS 12% + KFC 1%</field>
+            <field name="type_tax_use">sale</field>
+            <field name="amount_type">group</field>
+            <field name="amount">0</field>
+            <field name="children_tax_ids" eval="[(6, 0, [ref('sale_sgst_14_cess_12'), ref('sale_cgst_14_cess_12'),
+            ref('sale_cess_12_gst_28'),ref('sale_kfc_1_for_gst_28_cess_12')])]"/>
+        </record>
+
+        <!-- GST 28 + CESS 12 + KFC 1 Group Tax -->
+
+        <!-- GST 28 + KFC 1 Group Tax -->
+        <record id="sale_sgst_14" model="account.tax">
+            <field name="name">SGST 14% [KFC]</field>
+            <field name="description">SGST 14%</field>
+            <field name="type_tax_use">none</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">14</field>
+            <field name="python_compute">result= ((price_unit * quantity /1.29) * 0.14)</field>
+            <field name="tag_ids" eval="[(6,0,[ref('gstr_efiling.wk_sgst_tag_tax'),])]"/>
+            <field name="price_include" eval="1"/>
+            <field name="include_base_amount" eval="1"/>
+            <field name="adjust_amount">29</field>
+            <!--<field name="cess_adjust_amount">2.071428571</field>-->
+        </record>
+        <record id="sale_cgst_14" model="account.tax">
+            <field name="name">CGST 14% [KFC]</field>
+            <field name="description">CGST 14%</field>
+            <field name="type_tax_use">none</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">14</field>
+            <field name="python_compute">result= ((price_unit * quantity /1.29) * 0.14)</field>
+            <field name="tag_ids" eval="[(6,0,[ref('gstr_efiling.wk_cgst_tag_tax'),])]"/>
+            <field name="price_include" eval="1"/>
+            <field name="include_base_amount" eval="1"/>
+            <field name="adjust_amount">29</field>
+            <!--<field name="cess_adjust_amount">2.071428571</field>-->
+        </record>
+
+        <record id="sale_kfc_1_for_gst_28" model="account.tax">
+            <field name="name">KFC 1% [for GST 28%]</field>
+            <field name="description">KFC 1% [for GST 28%]</field>
+            <field name="type_tax_use">none</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">1</field>
+            <field name="python_compute">result= ((price_unit * quantity /1.29) * 0.01)</field>
+            <field name="tag_ids" eval="[(6,0,[ref('kfc_tag_tax'),])]"/>
+            <field name="price_include" eval="1"/>
+            <field name="include_base_amount" eval="1"/>
+            <field name="adjust_amount">29</field>
+            <!--<field name="cess_adjust_amount">29</field>-->
+            <field name="kfc">1</field>
+        </record>
+
+         <record id="sale_gst_28_kfc_1" model="account.tax">
+            <field name="name">GST 28% + KFC 1%</field>
+            <field name="description">GST 28% + KFC 1%</field>
+            <field name="type_tax_use">sale</field>
+            <field name="amount_type">group</field>
+            <field name="amount">0</field>
+            <field name="children_tax_ids" eval="[(6, 0, [ref('sale_sgst_14'), ref('sale_cgst_14'),
+            ref('sale_kfc_1_for_gst_28')])]"/>
+        </record>
+
+        <!-- GST 28 + KFC 1 Group Tax -->
+
+        <!-- GST 18 + KFC 1 Group Tax -->
+        <record id="sale_sgst_9" model="account.tax">
+            <field name="name">SGST 9% [KFC]</field>
+            <field name="description">SGST 9%</field>
+            <field name="type_tax_use">none</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">9</field>
+            <field name="python_compute">result= ((price_unit * quantity /1.19) * 0.09)</field>
+            <field name="tag_ids" eval="[(6,0,[ref('gstr_efiling.wk_sgst_tag_tax'),])]"/>
+            <field name="price_include" eval="1"/>
+            <field name="include_base_amount" eval="1"/>
+            <field name="adjust_amount">19</field>
+            <!--<field name="cess_adjust_amount">2.111111111</field>-->
+        </record>
+        <record id="sale_cgst_9" model="account.tax">
+            <field name="name">CGST 9% [KFC]</field>
+            <field name="description">CGST 9%</field>
+            <field name="type_tax_use">none</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">9</field>
+            <field name="python_compute">result= ((price_unit * quantity /1.19) * 0.09)</field>
+            <field name="tag_ids" eval="[(6,0,[ref('gstr_efiling.wk_cgst_tag_tax'),])]"/>
+            <field name="price_include" eval="1"/>
+            <field name="include_base_amount" eval="1"/>
+            <field name="adjust_amount">19</field>
+            <!--<field name="cess_adjust_amount">2.111111111</field>-->
+        </record>
+
+        <record id="sale_kfc_1_for_gst_18" model="account.tax">
+            <field name="name">KFC 1% [for GST 18%]</field>
+            <field name="description">KFC 1% [for GST 18%]</field>
+            <field name="type_tax_use">none</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">1</field>
+            <field name="python_compute">result= ((price_unit * quantity /1.19) * 0.01)</field>
+            <field name="tag_ids" eval="[(6,0,[ref('kfc_tag_tax'),])]"/>
+            <field name="price_include" eval="1"/>
+            <field name="include_base_amount" eval="1"/>
+            <field name="adjust_amount">19</field>
+            <!--<field name="cess_adjust_amount">19</field>-->
+            <field name="kfc">1</field>
+        </record>
+
+         <record id="sale_gst_18_kfc_1" model="account.tax">
+            <field name="name">GST 18% + KFC 1%</field>
+            <field name="description">GST 18% + KFC 1%</field>
+            <field name="type_tax_use">sale</field>
+            <field name="amount_type">group</field>
+            <field name="amount">0</field>
+            <field name="children_tax_ids" eval="[(6, 0, [ref('sale_sgst_9'), ref('sale_cgst_9'),
+            ref('sale_kfc_1_for_gst_18')])]"/>
+        </record>
+
+        <!-- GST 18 + KFC 1 Group Tax -->
+
+        <!-- GST 12 + KFC 1 Group Tax -->
+        <record id="sale_sgst_6" model="account.tax">
+            <field name="name">SGST 6% [KFC]</field>
+            <field name="description">SGST 6%</field>
+            <field name="type_tax_use">none</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">6</field>
+            <field name="python_compute">result= ((price_unit * quantity /1.13) * 0.06)</field>
+            <field name="tag_ids" eval="[(6,0,[ref('gstr_efiling.wk_sgst_tag_tax'),])]"/>
+            <field name="price_include" eval="1"/>
+            <field name="include_base_amount" eval="1"/>
+            <field name="adjust_amount">13</field>
+            <!--<field name="cess_adjust_amount">2.166666667</field>-->
+        </record>
+        <record id="sale_cgst_6" model="account.tax">
+            <field name="name">CGST 6% [KFC]</field>
+            <field name="description">CGST 6%</field>
+            <field name="type_tax_use">none</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">6</field>
+            <field name="python_compute">result= ((price_unit * quantity /1.13) * 0.06)</field>
+            <field name="tag_ids" eval="[(6,0,[ref('gstr_efiling.wk_cgst_tag_tax'),])]"/>
+            <field name="price_include" eval="1"/>
+            <field name="include_base_amount" eval="1"/>
+            <field name="adjust_amount">13</field>
+            <!--<field name="cess_adjust_amount">2.166666667</field>-->
+        </record>
+
+        <record id="sale_kfc_1_for_gst_12" model="account.tax">
+            <field name="name">KFC 1% [for GST 12%]</field>
+            <field name="description">KFC 1% [for GST 12%]</field>
+            <field name="type_tax_use">none</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">1</field>
+            <field name="python_compute">result= ((price_unit * quantity /1.13) * 0.01)</field>
+            <field name="tag_ids" eval="[(6,0,[ref('kfc_tag_tax'),])]"/>
+            <field name="price_include" eval="1"/>
+            <field name="include_base_amount" eval="1"/>
+            <field name="adjust_amount">13</field>
+            <!--<field name="cess_adjust_amount">13</field>-->
+            <field name="kfc">1</field>
+        </record>
+
+         <record id="sale_gst_12_kfc_1" model="account.tax">
+            <field name="name">GST 12% + KFC 1%</field>
+            <field name="description">GST 12% + KFC 1%</field>
+            <field name="type_tax_use">sale</field>
+            <field name="amount_type">group</field>
+            <field name="amount">0</field>
+            <field name="children_tax_ids" eval="[(6, 0, [ref('sale_sgst_6'), ref('sale_cgst_6'),
+            ref('sale_kfc_1_for_gst_12')])]"/>
+        </record>
+
+        <!-- GST 12 + KFC 1 Group Tax -->
+
+        <!-- GST 3 + KFC 1 Group Tax -->
+        <record id="sale_sgst_1_5" model="account.tax">
+            <field name="name">SGST 1.5% [KFC]</field>
+            <field name="description">SGST 1.5%</field>
+            <field name="type_tax_use">none</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">1.5</field>
+            <field name="python_compute">result= ((price_unit * quantity /1.0325) * 0.015)</field>
+            <field name="tag_ids" eval="[(6,0,[ref('gstr_efiling.wk_sgst_tag_tax'),])]"/>
+            <field name="price_include" eval="1"/>
+            <field name="include_base_amount" eval="1"/>
+            <field name="adjust_amount">3.25</field>
+            <!--<field name="cess_adjust_amount">2.166666667</field>-->
+        </record>
+        <record id="sale_cgst_1_5" model="account.tax">
+            <field name="name">CGST 1.5% [KFC]</field>
+            <field name="description">CGST 1.5%</field>
+            <field name="type_tax_use">none</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">1.5</field>
+            <field name="python_compute">result= ((price_unit * quantity /1.0325) * 0.015)</field>
+            <field name="tag_ids" eval="[(6,0,[ref('gstr_efiling.wk_cgst_tag_tax'),])]"/>
+            <field name="price_include" eval="1"/>
+            <field name="include_base_amount" eval="1"/>
+            <field name="adjust_amount">3.25</field>
+            <!--<field name="cess_adjust_amount">2.166666667</field>-->
+        </record>
+
+        <record id="sale_kfc_1_for_gst_3" model="account.tax">
+            <field name="name">KFC 1% [for GST 3%]</field>
+            <field name="description">KFC 1% [for GST 3%]</field>
+            <field name="type_tax_use">none</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">1</field>
+            <field name="python_compute">result= ((price_unit * quantity /1.0325) * 0.01)</field>
+            <field name="tag_ids" eval="[(6,0,[ref('kfc_tag_tax'),])]"/>
+            <field name="price_include" eval="1"/>
+            <field name="include_base_amount" eval="1"/>
+            <field name="adjust_amount">3.25</field>
+            <!--<field name="cess_adjust_amount">3.25</field>-->
+            <field name="kfc">1</field>
+        </record>
+
+         <record id="sale_gst_3_kfc_1" model="account.tax">
+            <field name="name">GST 3% + KFC 1%</field>
+            <field name="description">GST 3% + KFC 1%</field>
+            <field name="type_tax_use">sale</field>
+            <field name="amount_type">group</field>
+            <field name="amount">0</field>
+            <field name="children_tax_ids" eval="[(6, 0, [ref('sale_sgst_1_5'), ref('sale_cgst_1_5'),
+            ref('sale_kfc_1_for_gst_3')])]"/>
+        </record>
+
+        <!-- GST 3 + KFC 1 Group Tax -->
+
+
+    </data>
+
+</odoo>

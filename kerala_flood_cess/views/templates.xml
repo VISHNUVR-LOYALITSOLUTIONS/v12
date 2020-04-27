@@ -1,0 +1,11 @@
+<odoo>
+    <data>
+        <!--<template id="kerala_flood_cess_assets" name="keral_flood_cess assets"-->
+                  <!--inherit_id="point_of_sale.assets">-->
+            <!--<xpath expr="." position="inside">-->
+                <!--<script type="text/javascript" src="/kerala_flood_cess/static/src/js/load_models.js"/>-->
+                <!--<script type="text/javascript" src="/kerala_flood_cess/static/src/js/screen.js"/>-->
+            <!--</xpath>-->
+        <!--</template>-->
+    </data>
+</odoo>
