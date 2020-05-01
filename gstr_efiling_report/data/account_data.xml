@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data noupdate="1">
+
+        <record id="tax_wk_sgst_account_tag" model="account.account.tag">
+            <field name="name">SGST</field>
+            <field name="applicability">accounts</field>
+        </record>
+        <record id="tax_wk_cgst_account_tag" model="account.account.tag">
+            <field name="name">CGST</field>
+            <field name="applicability">accounts</field>
+        </record>
+        <record id="tax_wk_igst_account_tag" model="account.account.tag">
+            <field name="name">IGST</field>
+            <field name="applicability">accounts</field>
+        </record>
+
+        <!-- Assets -->
+
+        <record model="account.account" id="kp100511">
+            <field name="name">SGST Receivable</field>
+            <field name="code">100511</field>
+            <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="tag_ids" eval="[(6,0,[ref('tax_wk_sgst_account_tag'),])]"/>
+        </record>
+
+        <record model="account.account" id="kp10052">
+            <field name="name">CGST Receivable</field>
+            <field name="code">10052</field>
+            <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="tag_ids" eval="[(6,0,[ref('tax_wk_cgst_account_tag'),])]"/>
+        </record>
+
+        <record model="account.account" id="kp10053">
+            <field name="name">IGST Receivable</field>
+            <field name="code">10053</field>
+            <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+            <field name="reconcile" eval="False"/>
+            <field name="tag_ids" eval="[(6,0,[ref('tax_wk_igst_account_tag'),])]"/>
+        </record>
+        
+        <!-- Liabilities -->
+
+        <record model="account.account" id="kp112321">
+            <field name="name">SGST Payable</field>
+            <field name="code">112321</field>
+            <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+            <field name="reconcile" eval="False"/>
+            <field name="tag_ids" eval="[(6,0,[ref('tax_wk_sgst_account_tag'),])]"/>
+        </record>
+
+        <record model="account.account" id="kp11233">
+            <field name="name">CGST Payable</field>
+            <field name="code">11233</field>
+            <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+            <field name="reconcile" eval="False"/>
+            <field name="tag_ids" eval="[(6,0,[ref('tax_wk_cgst_account_tag'),])]"/>
+        </record>
+
+        <record model="account.account" id="kp11234">
+            <field name="name">IGST Payable</field>
+            <field name="code">11234</field>
+            <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+            <field name="reconcile" eval="False"/>
+            <field name="tag_ids" eval="[(6,0,[ref('tax_wk_igst_account_tag'),])]"/>
+        </record>
+
+        <!-- Account Journal -->
+
+        <record id="tax_wk_tax_journal" model="account.journal">
+            <field name="name">Tax Invoice</field>
+            <field name="code">TAXINV</field>
+            <field name="type">sale</field>
+        </record>
+
+        <record id="tax_wk_retail_journal" model="account.journal">
+            <field name="name">Retail Invoice</field>
+            <field name="code">RETINV</field>
+            <field name="type">sale</field>
+        </record>
+
+        <record id="tax_wk_export_journal" model="account.journal">
+            <field name="name">Export Invoice</field>
+            <field name="code">EXPINV</field>
+            <field name="type">sale</field>
+        </record>
+    </data>
+
+</odoo>
