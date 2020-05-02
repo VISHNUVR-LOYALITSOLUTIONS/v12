@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+	<data>
+
+        <record id="gstr1_tool_tree" model="ir.ui.view">
+            <field name="name">gstr1.tool.tree</field>
+            <field name="model">gstr1.tool</field>
+            <field name="arch" type="xml">
+                <tree string="GSTR" default_order='create_date desc'>
+                    <field name="name"/>
+                    <field name="period_id" />
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="status" />
+                    <field name="create_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_gstr_filter" model="ir.ui.view">
+            <field name="name">gstr1.tool.select</field>
+            <field name="model">gstr1.tool</field>
+            <field name="arch" type="xml">
+                <search string="GST Invoice">
+                    <field name="name" string="GST Invoice" filter_domain="[('name','ilike',self)]"/>
+                    <filter name="not_uploaded" string="Not Uploaded" domain="[('status','=','not_uploaded')]"/>
+                    <filter name="ready_to_upload" string="Ready To Upload" domain="[('status','=','ready_to_upload')]"/>
+                    <filter name="uploaded" string="Uploaded To Govt" domain="[('status','=','uploaded')]"/>
+                    <filter name="filed" string="Filed" domain="[('status','=','filed')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="GST Status" name="status" domain="[]" context="{'group_by':'status'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data noupdate="0">
+				<!--   Server action for bulk Account Type update  -->
+
+
+
+		<record id="action_sync_invoice_type" model="ir.actions.server">
+			<field name="name">Update Invoice Type</field>
+			<field name="model_id" ref="account.model_account_invoice"/>
+			<field name="state">code</field>
+			<field name="code">action = env["invoice.type.wizard"].updateInvoiceType()</field>
+		</record>
+
+		<!--<record id="ir_open_bulk_invoice_type" model="ir.default">-->
+			<!--<field eval="'client_action_multi'" name="key2"/>-->
+			<!--<field eval="'account.invoice'" name="model"/>-->
+			<!--<field name="name">Update Invoice Type</field>-->
+			<!--<field eval="'ir.actions.server,%d'%action_sync_invoice_type" name="value"/>-->
+		<!--</record>-->
+
+
+
+
+
+		<!--<record id="action_sync_invoice_type" model="ir.actions.server">-->
+			<!--<field name="name">Update Invoice Type</field>-->
+			<!--<field name="model_id" ref="account.model_account_invoice"/>-->
+
+    		<!--<field name="binding_model_id" ref="account.model_account_invoice"/>-->
+			<!--<field name="state">code</field>-->
+			<!--<field name="code">action = env["invoice.type.wizard"].updateInvoiceType()</field>-->
+		<!--</record>-->
+
+		<!--<record id="ir_open_bulk_invoice_type" model="ir.default">-->
+			<!--&lt;!&ndash;<field eval="'client_action_multi'" name="key2"/>&ndash;&gt;-->
+			<!--<field name="field_id"/>-->
+			<!--<field name="key">action</field>-->
+			<!--<field name="key2">client_action_multi</field>-->
+			<!--<field name="binding_model_id" ref="model_account_invoice"/>-->
+			<!--&lt;!&ndash;<field eval="'account.invoice'" name="model"/>&ndash;&gt;-->
+			<!--<field name="name">Update Invoice Type</field>-->
+			<!--&lt;!&ndash;<field eval="'ir.actions.act_window,%d'%action_sync_invoice_type" name="value"/>&ndash;&gt;-->
+
+			<!--<field name="value" eval="'ir.actions.act_window,' + str(ref('action_sync_invoice_type'))"/>-->
+
+		<!--</record>-->
+
+		<!--<record model="ir.default" id="action_selected_account_move_line_values">-->
+<!--<field name="name">Sélectionner les écritures</field>-->
+<!--<field name="field_id"/>-->
+<!--<field name="key">action</field>-->
+<!--<field name="key2">client_action_multi</field>-->
+<!--<field name="value" eval="'ir.actions.act_window,' + str(ref('action_selected_account_move_line'))"/>-->
+<!--<field name="binding_model_id" ref="model_account_move_line"/>-->
+<!--<field name="object" eval="True"/>-->
+<!--</record>-->
+
+			
+		<!-- #################################### END OF SERVER ACTION ######################################  -->
+	
+    </data>
+</odoo>

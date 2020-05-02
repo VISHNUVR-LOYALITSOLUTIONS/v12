@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+        <record id="invoice_gstrsale_wizard_form" model="ir.ui.view">
+            <field name="name">GSTR1 B2B</field>
+            <field name="model">invoice.report.gstsale.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <field invisible="1" name="state"/>
+                    <div states="choose">
+                        <group>
+                            <field name="date_from" required="1"/>
+                            <field name="date_to" required="1"/>
+                            <field name="reverse_charge"/>
+                        </group>
+                    </div>
+                    <div states="get">
+                        <group>
+                            <field name="name" colspan="4" invisible="1"/>
+                            <field name="report" filename="name" colspan="4"/>
+                        </group>
+                    </div>
+                    <footer states="choose">
+                        <button name="generate_gstrsale_report" string="Generate B2B" type="object"
+                                class="oe_highlight"/>
+                        <button special="cancel" string="Cancel" class="oe_highlight"/>
+                    </footer>
+                    <footer states="get">
+                        <button special="cancel" string="Cancel" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_gstrsale_report" model="ir.actions.act_window">
+            <field name="name">GSTR1 B2B</field>
+            <field name="res_model">invoice.report.gstsale.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="invoice_gstrsale_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+
+
+
+
+
+        <menuitem id="account_report_gstrsale" name="GSTR1 B2B"
+                  parent="menu_gst_reports" action="action_gstrsale_report"
+                  sequence="4" groups="account.group_account_manager"/>
+
+    </data>
+</odoo>
