@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+            <record id="object0" model="branch_policies.branch_policies">
+             <field name="name">No Lmits</field>
+             <field name="short_code">0</field>
+            </record>
+            <record id="object1" model="branch_policies.branch_policies">
+             <field name="name">Selling Price</field>
+             <field name="short_code">BSP</field>
+            </record>
+            <record id="object2" model="branch_policies.branch_policies">
+             <field name="name">Cost Price </field>
+             <field name="short_code">BCP</field>
+           </record>
+    </data>
+</odoo>

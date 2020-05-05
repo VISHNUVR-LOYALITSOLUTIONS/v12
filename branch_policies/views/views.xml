@@ -1,0 +1,75 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="branch_policies_form_view">
+            <field name="name">branch.policies</field>
+            <field name="model">operating.unit</field>
+            <field name="inherit_id" ref="operating_unit.view_operating_unit_form"/>
+            <field name="arch" type="xml">
+        <!-- find field description and add the field
+             idea_ids after it -->
+        <xpath expr="//field[@name='partner_id']" position="after">
+            <group string="Configure Branch Policies" >
+          <field name="select_rule" string="Select Rule"/>
+          <field name="branch_limit" string="Amount"/>
+            </group>
+        </xpath>
+         </field>
+        </record>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="branch_policies.list">
+      <field name="name">Branch Policies list</field>
+      <field name="model">branch_policies.branch_policies</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="branch_policies.action_window">
+      <field name="name">Branch Policies window</field>
+      <field name="res_model">branch_policies.branch_policies</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="branch_policies.action_server">
+      <field name="name">Branch Policies server</field>
+      <field name="model_id" ref="model_branch_policies_branch_policies"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="Branch Policies" id="branch_policies.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="branch_policies.menu_1" parent="branch_policies.menu_root"/>
+    <menuitem name="Menu 2" id="branch_policies.menu_2" parent="branch_policies.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="branch_policies.menu_1_list" parent="branch_policies.menu_1"
+              action="branch_policies.action_window"/>
+    <menuitem name="Server to list" id="branch_policies" parent="branch_policies.menu_2"
+              action="branch_policies.action_server"/>
+    -->
+  </data>
+</odoo>
