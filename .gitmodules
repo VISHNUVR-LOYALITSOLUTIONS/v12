@@ -17,3 +17,8 @@
 	path = OCA/vertical-hotel
 	url = git@github.com:OCA/vertical-hotel.git
 	branch = 12.0
+
+[submodule "OCA/pos"]
+	path = OCA/pos
+	url = git@github.com:OCA/pos.git
+	branch = 12.0
